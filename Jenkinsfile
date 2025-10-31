@@ -8,9 +8,24 @@ pipeline {
       }
     }
 
-    stage('Check Content ') {
-      steps {
-        sh 'ls -la'
+    stage('Check Content') {
+      parallel {
+        stage('Check Content ') {
+          steps {
+            sh 'ls -la'
+          }
+        }
+
+        stage('Unit tests') {
+          steps {
+            sh '''node --version
+npm --version
+cd curriculum-front
+npm ci
+npm run test:unit'''
+          }
+        }
+
       }
     }
 
