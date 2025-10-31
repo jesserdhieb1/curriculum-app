@@ -3,7 +3,8 @@ pipeline {
   stages {
     stage('Install Deps') {
       steps {
-        sh '''apt update && apt upgrade
+        sh '''git --version
+apt update && apt upgrade
 apt install git'''
       }
     }
